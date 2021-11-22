@@ -1,31 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useReducer} from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import SearchBar from "../components/SearchBar";
 import yelp from "../api/yelp";
+import useResults from "../hooks/useResults";
 
 const SearchScreen = () => {
     const [searchInp, setSearchInp] = useState('');
-    const [searchResults, setSearchResults] = useState('');
-
+    const [searchSubmit, searchResults] = useResults();
+    
     const searchRestaurants = (searchKey) =>{
         setSearchInp(searchKey);
     }
-    try {
-        var searchSubmit = async() => {
-            const response = await yelp.get('/search',{
-                params: {
-                    term: searchInp,
-                    limit: 50,
-                    location: 'san jose'
-                }
-            })
-            setSearchResults(response.data.businesses);
-        }       
-    }
-    catch(e) {
-        console.log(e);
-    }
-    
  
     return (
         <View style={styles.viewStyle}>           

@@ -12,7 +12,7 @@ const SearchBar = ({searchValue , onSearch, onEnterPress}) => {
                 value={searchValue} 
                 onChangeText={(searchKey)=> onSearch(searchKey)} 
                 style={styles.input} placeholder="Search"
-                onEndEditing = {()=>onEnterPress()}
+                onEndEditing = {()=>onEnterPress(searchValue)}
             />
         </View>
     )
